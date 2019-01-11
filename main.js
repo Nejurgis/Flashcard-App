@@ -34,7 +34,7 @@ function getQuestion() {
     // target the element which will inherit the paragraph
     card.appendChild(question);
     // create a show answer button
-    showAnswerButton();
+    showAnswerButton(randomNumber);
 }
 
 function getAnswer(number){
@@ -46,12 +46,16 @@ function getAnswer(number){
     card.appendChild(answer);
 }
 
-function showAnswerButton(){
+function showAnswerButton(number){
     const getAnswerBtn = document.createElement('button');
     getAnswerBtn.setAttribute('id', 'getAnswer');
     getAnswerBtn.innerText = 'Show Answer';
     //append button to the card element
     card.appendChild(getAnswerBtn);
     console.log(getAnswerBtn);
-    // getAnswerBtn.addEventListener('click', alert('bla'));
+    getAnswerBtn.addEventListener('click', () => getAnswer(number));
+    // getAnswerBtn.setAttribute('onclick',number);
+    // getAnswer(number);
 }
+
+// we target answer button and add an event handler to it
