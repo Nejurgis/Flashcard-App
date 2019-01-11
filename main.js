@@ -1,5 +1,4 @@
-const questionArray = [
-    {
+const questionArray = [{
         question: 'What does HTML stand for?',
         answer: 'Hyper Text Markup Language'
     },
@@ -17,15 +16,17 @@ const questionArray = [
     },
 ]
 
-
-for (let i = 0; i < questionArray.length; i++) {
-    console.log(questionArray[i]); 
-}
-
 const card = document.getElementById('card');
 
+function cleaner() {
+    while(card.firstChild) {
+        card.removeChild(card.firstChild);
+    }
+}
+
 function getQuestion() {
-    let randomNumber = Math.floor(Math.random() * questionArray.length);    
+    cleaner();
+    let randomNumber = Math.floor(Math.random() * questionArray.length);
     // create p
     let question = document.createElement('p');
     // fetch the text from the questionArray
@@ -35,27 +36,33 @@ function getQuestion() {
     card.appendChild(question);
     // create a show answer button
     showAnswerButton(randomNumber);
+
+    // TODO: RESET THE CARD
+    // target the children and delete them 
+    // if an element is already there (a p for example)
+    // card.remove(question);
+    // cleaner()
 }
 
-function getAnswer(number){
-    // create a buttn
-    
-    //display the answer
+function getAnswer(number) {
     let answer = document.createElement('p');
     answer.innerHTML = questionArray[number].answer;
     card.appendChild(answer);
 }
 
-function showAnswerButton(number){
+function showAnswerButton(number) {
     const getAnswerBtn = document.createElement('button');
-    getAnswerBtn.setAttribute('id', 'getAnswer');
     getAnswerBtn.innerText = 'Show Answer';
     //append button to the card element
+    
     card.appendChild(getAnswerBtn);
-    console.log(getAnswerBtn);
-    getAnswerBtn.addEventListener('click', () => getAnswer(number));
-    // getAnswerBtn.setAttribute('onclick',number);
-    // getAnswer(number);
+    getAnswerBtn.addEventListener('click', function() {
+        getAnswer(number);
+        this.style.display = "none";
+    });
 }
+
+// when we click on show answer button it will disappear
+// attach a class that does visibility: none;
 
 // we target answer button and add an event handler to it
