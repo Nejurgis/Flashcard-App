@@ -19,18 +19,11 @@ const questionArray = [{
 const card = document.getElementById('card');
 const form = document.getElementById('formContainer');
 
-function cleaner(item) {
-    while(item.firstChild) {
-        item.removeChild(item.firstChild);
-    }
-}
 
 function getQuestion() {
     cleaner(card);
+    toggleFormVisibility();
 
-    if(form.className === 'Visible'){
-        form.setAttribute('class', 'notVisible');
-    } 
     let randomNumber = Math.floor(Math.random() * questionArray.length);
     // create p
     let question = document.createElement('p');
@@ -41,12 +34,6 @@ function getQuestion() {
     card.appendChild(question);
     // create a show answer button
     showAnswerButton(randomNumber);
-
-    // TODO: RESET THE CARD
-    // target the children and delete them 
-    // if an element is already there (a p for example)
-    // card.remove(question);
-    // cleaner()
 }
 
 function getAnswer(number) {
@@ -58,27 +45,40 @@ function getAnswer(number) {
 function showAnswerButton(number) {
     const getAnswerBtn = document.createElement('button');
     getAnswerBtn.innerText = 'Show Answer';
-    //append button to the card element
-    
+
     card.appendChild(getAnswerBtn);
-    getAnswerBtn.addEventListener('click', function() {
+    getAnswerBtn.addEventListener('click', function () {
         getAnswer(number);
         this.style.display = "none";
     });
 }
 
-// when we click on show answer button it will disappear
-// attach a class that does visibility: none;
-
-// we target answer button and add an event handler to it
-
-function displayForm(){
+function displayForm() {
     cleaner(card);
-    // form.classList.remove("notVisible");
     form.setAttribute('class', 'Visible');
 }
 
-function addQuestion(){
-//collect the data from the form
-//save the data to the object
+function addQuestion() {
+    event.preventDefault();
+    const questionInput = document.getElementById('questionInput');
+    const answerInput = document.getElementById('answerInput');
+    questionArray.push({
+        question: questionInput.value,
+        answer: answerInput.value
+    })
+    questionInput.value = null;
+    answerInput.value = null;
+    toggleFormVisibility();
+}
+
+function cleaner(item) {
+    while (item.firstChild) {
+        item.removeChild(item.firstChild);
+    }
+}
+
+function toggleFormVisibility() {
+    if (form.className === 'Visible') {
+        form.setAttribute('class', 'notVisible');
+    }
 }

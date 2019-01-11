@@ -17,12 +17,17 @@
             </div>
             <button onclick="getQuestion()" id="getQuestion">Show Question</button>
             <div id="formContainer" class="questionForm notVisible">
-                <form onsubmit="addQuestion()"; return false>
+
+
+
+                <form onsubmit="addQuestion()">
                     <label for="questioInput">Add new Question:</label>
                     <textarea type="text" name="questionInput" id="questionInput"></textarea>
                     <label for="answerInput">Add your answer:</label>
                     <textarea type="text" name="answerInput" id="answerInput"></textarea>
-                    <button type="default">Add</button>
+                    <button type="submit">Submit</button>
+
+                    <!-- <input type="submit" value="Add Question!">  -->
                 </form>
             </div>
             <button onclick="displayForm()" id="addQuestion">Add New Question</button>
