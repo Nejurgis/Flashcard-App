@@ -12,8 +12,8 @@ const questionArray = [{
     },
     {
         question: 'How do you create an element in the DOM?',
-        answer: 'element.createElement("nameOfElement")'
-    },
+        answer: 'element. createElement ("nameOfElement")'
+    }
 ]
 
 const card = document.getElementById('card');
@@ -26,7 +26,7 @@ function getQuestion() {
 
     let randomNumber = Math.floor(Math.random() * questionArray.length);
     // create p
-    let question = document.createElement('p');
+    let question = document.createElement('h3');
     // fetch the text from the questionArray
     // append the text to the paragraph
     question.innerHTML = questionArray[randomNumber].question;
@@ -37,7 +37,7 @@ function getQuestion() {
 }
 
 function getAnswer(number) {
-    let answer = document.createElement('p');
+    let answer = document.createElement('h2');
     answer.innerHTML = questionArray[number].answer;
     card.appendChild(answer);
 }
