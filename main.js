@@ -17,15 +17,20 @@ const questionArray = [{
 ]
 
 const card = document.getElementById('card');
+const form = document.getElementById('formContainer');
 
-function cleaner() {
-    while(card.firstChild) {
-        card.removeChild(card.firstChild);
+function cleaner(item) {
+    while(item.firstChild) {
+        item.removeChild(item.firstChild);
     }
 }
 
 function getQuestion() {
-    cleaner();
+    cleaner(card);
+
+    if(form.className === 'Visible'){
+        form.setAttribute('class', 'notVisible');
+    } 
     let randomNumber = Math.floor(Math.random() * questionArray.length);
     // create p
     let question = document.createElement('p');
@@ -66,3 +71,14 @@ function showAnswerButton(number) {
 // attach a class that does visibility: none;
 
 // we target answer button and add an event handler to it
+
+function displayForm(){
+    cleaner(card);
+    // form.classList.remove("notVisible");
+    form.setAttribute('class', 'Visible');
+}
+
+function addQuestion(){
+//collect the data from the form
+//save the data to the object
+}

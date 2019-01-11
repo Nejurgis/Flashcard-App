@@ -1,3 +1,7 @@
 .notVisible{
     display: none;
 }
+
+.Visible{
+    display: block;
+}
