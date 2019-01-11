@@ -13,27 +13,60 @@ const questionArray = [{
     {
         question: 'How do you create an element in the DOM?',
         answer: 'element. createElement ("nameOfElement")'
+    },
+    {
+        question: 'How do you create a closure?',
+        answer: 'What"s a closure?'
+    },
+    {
+        question: 'What is git?',
+        answer: "It's a collaboration tool" 
+    },
+    {
+        question: 'How Awesome is this app?',
+        answer: "It's Fantastic!"
     }
+
 ]
 
 const card = document.getElementById('card');
 const form = document.getElementById('formContainer');
+const usedNumbers = [];
+
+let qLeft = document.getElementById('qLeft');
+
 
 
 function getQuestion() {
     cleaner(card);
     toggleFormVisibility();
-
     let randomNumber = Math.floor(Math.random() * questionArray.length);
-    // create p
-    let question = document.createElement('h3');
-    // fetch the text from the questionArray
-    // append the text to the paragraph
-    question.innerHTML = questionArray[randomNumber].question;
-    // target the element which will inherit the paragraph
-    card.appendChild(question);
-    // create a show answer button
-    showAnswerButton(randomNumber);
+    
+
+    
+    if (usedNumbers.includes(randomNumber)) {
+        if(usedNumbers.length !== questionArray.length){
+            return getQuestion(); 
+        }
+        alert("Great! You've got them all!");
+        usedNumbers.length = 0; 
+    } else {
+        // create p
+        let question = document.createElement('h3');
+        question.innerHTML = questionArray[randomNumber].question;
+        // target the element which will inherit the paragraph
+        card.appendChild(question);
+        // create a show answer button
+        showAnswerButton(randomNumber);
+    
+        // we need to check if random number has been used already
+        // we need to store the 'used numbers' in an array
+        // we need to check the number against that array
+        usedNumbers.push(randomNumber);
+        qLeft.innerText = `You have ${questionArray.length - usedNumbers.length} questions left!`;
+    
+    }
+    
 }
 
 function getAnswer(number) {
@@ -69,6 +102,7 @@ function addQuestion() {
     questionInput.value = null;
     answerInput.value = null;
     toggleFormVisibility();
+
 }
 
 function cleaner(item) {

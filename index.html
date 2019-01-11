@@ -13,7 +13,9 @@
     <div class="container">
         <h1 class="title">The Fantastic Memory Game</h1>
         <div class="cardContainer">
+                <p id="qLeft"></p>
             <div id="card">
+                <p>Ready For Questions?</p>
             </div>
             <button onclick="getQuestion()" id="getQuestion">Show Question</button>
             <div id="formContainer" class="questionForm notVisible">
@@ -24,8 +26,6 @@
                     <label for="answerInput">Add your answer:</label>
                     <textarea type="text" name="answerInput" id="answerInput"></textarea>
                     <button type="submit">Submit</button>
-
-                    <!-- <input type="submit" value="Add Question!">  -->
                 </form>
             </div>
             <button onclick="displayForm()" id="addQuestion">Add New Question</button>
